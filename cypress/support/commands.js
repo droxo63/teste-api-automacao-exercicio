@@ -5,7 +5,7 @@ Cypress.Commands.add('token', (email, senha) => {
         body: {
             "email": email,
             "password": senha 
-        }
+        }, failOnStatusCode: false
     }).then((response) => {
         expect(response.status).to.equal(200)
         return response.body.authorization
@@ -26,3 +26,21 @@ Cypress.Commands.add('token', (email, senha) => {
           failOnStatusCode: false
     })
  })
+
+ import Chance from 'chance';
+ const chance = new Chance();
+ 
+ // Comando para gerar um usuário dinâmico
+ Cypress.Commands.add('criarUsuario', (nome, email, senha, admin) => {
+    return cy.request({
+      method: "POST",
+      url: "usuarios",
+      body: {
+        nome,
+        email: email || chance.email(),
+        password: senha || chance.string({ length: 8 }),
+        administrador: admin || "true"
+      }, failOnStatusCode: false
+    });
+  });
+ 
