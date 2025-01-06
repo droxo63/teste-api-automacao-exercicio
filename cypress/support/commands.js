@@ -5,7 +5,7 @@ Cypress.Commands.add('token', (email, senha) => {
         body: {
             "email": email,
             "password": senha 
-        }, failOnStatusCode: false
+        }
     }).then((response) => {
         expect(response.status).to.equal(200)
         return response.body.authorization
@@ -22,8 +22,7 @@ Cypress.Commands.add('token', (email, senha) => {
             "preco": preco,
             "descricao": descricao,
             "quantidade": quantidade
-          }, 
-          failOnStatusCode: false
+          }
     })
  })
 
