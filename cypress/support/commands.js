@@ -22,7 +22,7 @@ Cypress.Commands.add('token', (email, senha) => {
             "preco": preco,
             "descricao": descricao,
             "quantidade": quantidade
-          }
+          },failOnStatusCode: false
     })
  })
 
